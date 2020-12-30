@@ -129,8 +129,8 @@ const InputFields = (name: string, label: string, type: string = "text", icon?: 
 }
 
 const Form = () => {
-  let [emailAddress, emailAddressInput, setEmailaddressError] = InputFields('emailAddress', 'Email Address', 'email', <MailOutlineTwoToneIcon/>, handleInputOnBlur);
-  let [password, passwordInput,setPassworderror] = InputFields('password', 'Password', 'password', <LockTwoToneIcon/>, handleInputOnBlur);
+  let [emailAddress, emailAddressInput, setEmailaddressError] = InputFields( 'emailAddress', 'Email Address', 'email', <MailOutlineTwoToneIcon/>, handleInputOnBlur );
+  let [password, passwordInput,setPassworderror] = InputFields( 'password', 'Password', 'password', <LockTwoToneIcon/>, handleInputOnBlur );
 
   const handleSubmit = ( event: any ) => {
     event.preventDefault();
@@ -156,13 +156,13 @@ const Form = () => {
   }
 
   return (
-    <form onSubmit={(event: any) => {handleSubmit(event)}} autoComplete="off">
+    <form onSubmit={( event: any ) => { handleSubmit( event ) } } autoComplete="off">
       <div>
         {emailAddressInput}
         {passwordInput}
-        <RememberMe emailAddress={emailAddress} password={password}/>
+        <RememberMe emailAddress={ emailAddress } password={ password }/>
         <div className="text-center py-4">
-          <Button type="submit" className="btn-primary font-weight-bold w-50 my-2" onClick={(event: any) => {handleSubmit(event)}}>
+          <Button type="submit" className="btn-primary font-weight-bold w-50 my-2" onClick={ ( event: any ) => { handleSubmit( event ) } }>
             Sign in
           </Button>
         </div>
