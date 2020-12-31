@@ -1,6 +1,7 @@
 import {ILogin, IForgotPassword, IConfirmationEmail, IRegister, IResetPassword} from '../interfaces/authentication';
 import axios from 'axios';
 import _ from 'lodash';
+import { navigate } from 'hookrouter';
 
 const axiosInstance = axios.create({
     baseURL: 'https://localhost:44388/api/Authenticate',
@@ -68,7 +69,11 @@ export class ConfirmationEmail implements IConfirmationEmail {
             email: this.email,
             token: this.token
         }).then((response: any) => {
-
+            if(response.status === 200){
+                navigate('/dashboard');
+            }else{
+                //TODO: return error message
+            }
         }).catch((error: any) => {
             console.log(error);
         })
