@@ -38,7 +38,7 @@ const Layout = () => {
             default:
                 return'sm';
         }
-      }
+    }
 
     return (
         <>
@@ -75,7 +75,7 @@ const Layout = () => {
                                 <div className="text-center d-block mb-3 mb-md-0 text-white">
                                 Copyright &copy; 2020 - UiFort.com
                                 </div>
-                                <List
+                                {/*<List
                                 component="div"
                                 className="nav-transparent text-nowrap d-flex justify-content-center">
                                 <ListItem
@@ -92,7 +92,7 @@ const Layout = () => {
                                     onClick={(e:any) => e.preventDefault()}>
                                     Terms of Service
                                 </ListItem>
-                                </List>
+                                </List>*/}
                             </div>
                         </Container>
                     </div>

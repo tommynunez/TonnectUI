@@ -66,9 +66,11 @@ const ForgotPasswordComponent = () => {
                   <TextField
                     fullWidth
                     variant="outlined"
-                    id="textfield-email"
+                    id="textfield-emailAddress"
                     label="Email address"
+                    name="emailAddress"
                     type="email"
+                    tabIndex={ 0 }
                     InputProps={{
                       startAdornment: (
                         <InputAdornment position="start">
@@ -86,7 +88,7 @@ const ForgotPasswordComponent = () => {
                   <A href="/login" className="text-first py-2">Return to log In</A>
                 </div>
                 <div className="text-center py-2">
-                  <Button type="submit" className="btn-primary font-weight-bold w-50 my-2">
+                  <Button type="submit" tabIndex={ 0 } className="btn-primary font-weight-bold w-50 my-2">
                     Submit
                   </Button>
                 </div>
