@@ -56,13 +56,24 @@ export class ForgotPassword implements IForgotPassword {
         this.email = email
     }
 
-    sendRequest() {
-        axiosInstance.post('/forgot/password', {
+    sendRequest = async () : Promise<any> =>  {
+        return await axiosInstance.post('/forgot/password', {
             email: this.email
         }).then((response: any) => {
-
+            if( response.status === 200 ) {
+                if( response.data.errorMessage === "Reset your password" ) {
+                    return { successful: true, errorMessage: response.data.errorMessage };
+                }
+                else if( response.data.errorMessage === "Confirm your email address" ) {
+                    return { successful: true, errorMessage: response.data.errorMessage };
+                } else { 
+                    return { successful: true };
+                }
+            }
         }).catch((error: any) => {
-            console.log(error);
+            if( !error.response ) {
+                return { successful: false, errorMessage: "You're request failed. Please try again!" };
+            }
         });
     }
 }

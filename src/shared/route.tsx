@@ -13,7 +13,7 @@ const unauthenticatedRoutes = {
     '/registration': () => <Autthenticaton />,
     '/resetpassword': () => <Autthenticaton />,
     '/forgotpassword': () => <Autthenticaton />,
-    '/email/confirmation': () => <Autthenticaton />
+    '/emailconfirmation': () => <Autthenticaton />
 }
 
 export const UnauthenticatedRoutes = () => {

@@ -22,7 +22,7 @@ export default function EmailConfirmation() {
       //https://medium.com/javascript-in-plain-english/https-medium-com-javascript-in-plain-english-stop-feeling-iffy-about-using-an-iife-7b0292aba174
       ( async function handleConfirmationemail() {
         const response = await confirmationEmail.sendRequest();
-
+        
         if( response && !response.successful ) {
           setAuthResponse(( prevState: any ) => {
             return { ...prevState, 
@@ -33,7 +33,8 @@ export default function EmailConfirmation() {
         }
       })();
 
-    } else{
+    } else {
+      console.log("error");
       setErrortype( 404 );
     }
   },[]);
@@ -42,7 +43,7 @@ export default function EmailConfirmation() {
     if(errorType === 0) {
       return( <>Please wait while we confirm your email</> );
     } else if( errorType === 404 ) {
-      return( <>An error has occured please try again!</> );
+      return( <>An error has occured please try again! Please check your email again</> );
     }
   }
 
@@ -56,10 +57,10 @@ export default function EmailConfirmation() {
               <div className="mb-4">
                 <div className="text-center">
                 {
-                  ( !authResponse.successful ) 
+                  ( !authResponse.successful )
                     ? 
                     <div className="text-center mt-4">
-                      <h1 className="font-size-xxl mb-1 font-weight-bold">
+                      <h1 className="font-size-xxl mb-1 font-weight-bold p-2">
                         { handleErrortype( errorType ) }
                       </h1>
                     </div>
