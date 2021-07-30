@@ -14,6 +14,7 @@ import {Login as LoginModel} from '../../../services/model/authentication';
 import Storage from '../../../services/helper/storage';
 import MailOutlineTwoToneIcon from '@material-ui/icons/MailOutlineTwoTone';
 import LockTwoToneIcon from '@material-ui/icons/LockTwoTone';
+import { usePreventBackButton } from '../../../extensions/usePreventBackButton';
 const STORAGE_REMEMBER_ME = "rememberMe";
 
 /**functions   */
@@ -195,6 +196,7 @@ const Form = () => {
 }
 
 export default function Login() {
+  usePreventBackButton();
   return (
     <>
         <Grid container spacing={0}>

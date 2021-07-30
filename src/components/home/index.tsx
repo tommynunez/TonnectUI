@@ -1,15 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import wrapperImg from '../../shared/images/tommy.jpg';
-import { styled } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { navigate } from 'hookrouter';
-import { Avatar, Box, Paper } from '@material-ui/core';
 
 const useAppBarStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -88,7 +84,6 @@ const Home = () => {
   return (
     <div>
       <HeaderBar />
-      
     </div>
   );
 };
