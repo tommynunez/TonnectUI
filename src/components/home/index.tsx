@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import AppBar from '@material-ui/core/AppBar';
@@ -18,8 +18,8 @@ const useAppBarStyles = makeStyles((theme: Theme) =>
       marginBottom: 0
     },
     appBar: {
-      marginBottom: '2em', 
-      background: 'transparent' 
+      marginBottom: '2em',
+      background: 'transparent'
     },
     appBarwrapper: {
       width: '70%',
@@ -34,12 +34,12 @@ const useAppBarStyles = makeStyles((theme: Theme) =>
       margin: theme.spacing(2),
       fontSize: '1rem'
     },
-    
+
   }),
 );
 
 const useContainerStyles = makeStyles((theme: Theme) =>
-  createStyles({ 
+  createStyles({
     root: {
       height: '95vh'
     },
@@ -48,9 +48,9 @@ const useContainerStyles = makeStyles((theme: Theme) =>
 
 const HeaderBar = () => {
   const appBarclasses = useAppBarStyles();
-  const containerClasses = useContainerStyles(); 
+  const containerClasses = useContainerStyles();
 
-  const handleNavigation = (event:any,route:string) => {
+  const handleNavigation = (event: any, route: string) => {
     event.preventDefault();
     navigate(route);
   }
@@ -64,8 +64,8 @@ const HeaderBar = () => {
               <Typography variant="h6" color="textPrimary" className={appBarclasses.appBarTitle}>
                 Tonnect
               </Typography>
-              <Button color="primary" onClick={(event:any) => { handleNavigation(event,'/login') }} variant="contained" className={appBarclasses.menuButton}>Login</Button>
-              <Button color="primary" onClick={(event: any) => { handleNavigation(event,'/registration') }} variant="contained" className={appBarclasses.menuButton}>Sign Up</Button>
+              <Button color="primary" onClick={(event: any) => { handleNavigation(event, '/login') }} variant="contained" className={appBarclasses.menuButton}>Login</Button>
+              <Button color="primary" onClick={(event: any) => { handleNavigation(event, '/registration') }} variant="contained" className={appBarclasses.menuButton}>Sign Up</Button>
             </Toolbar>
           </AppBar>
         </Grid>
