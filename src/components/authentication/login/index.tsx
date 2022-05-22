@@ -6,13 +6,15 @@ import {
   FormControlLabel,
   Checkbox,
   Button,
-  TextField
+  TextField,
+  Typography
 } from '@material-ui/core';
 import { A } from 'hookrouter';
 import {Login as LoginModel} from '../../../services/model/authentication';
 import Storage from '../../../services/helper/storage';
 import MailOutlineTwoToneIcon from '@material-ui/icons/MailOutlineTwoTone';
 import LockTwoToneIcon from '@material-ui/icons/LockTwoTone';
+import { usePreventBackButton } from '../../../extensions/usePreventBackButton';
 const STORAGE_REMEMBER_ME = "rememberMe";
 
 /**functions   */
@@ -113,6 +115,7 @@ const InputFields = (name: string, label: string, type: string = "text", icon?: 
       name={ name }
       error={ isError }
       value={ value }
+      tabIndex={ 0 }
       onBlur={ (event:any) => handleOnBlur( event, storage, isError, setIsError ) }
       onChange={ (event: any) => setValue( event.target.value ) }
       helperText={ HelperTextRequired( isError, label ) }
@@ -129,10 +132,11 @@ const InputFields = (name: string, label: string, type: string = "text", icon?: 
 }
 
 const Form = () => {
-  let [emailAddress, emailAddressInput, setEmailaddressError] = InputFields('emailAddress', 'Email Address', 'email', <MailOutlineTwoToneIcon/>, handleInputOnBlur);
-  let [password, passwordInput,setPassworderror] = InputFields('password', 'Password', 'password', <LockTwoToneIcon/>, handleInputOnBlur);
+  let [emailAddress, emailAddressInput, setEmailaddressError] = InputFields( 'emailAddress', 'Email Address', 'email', <MailOutlineTwoToneIcon/>, handleInputOnBlur );
+  let [password, passwordInput,setPassworderror] = InputFields( 'password', 'Password', 'password', <LockTwoToneIcon/>, handleInputOnBlur );
+  const [authResponse, setAuthResponse] = useState({ successful: false, errorMessage: '' } as  any);
 
-  const handleSubmit = ( event: any ) => {
+  const handleSubmit = async ( event: any ) => {
     event.preventDefault();
     let isError = false;
 
@@ -150,19 +154,35 @@ const Form = () => {
 
     //send request if we have no errors
     if( !isError ) {
-      const loginModel = new LoginModel();
-      loginModel.sendRequest();
+      const loginModel = new LoginModel(emailAddress, password);
+      const response = await loginModel.sendRequest();
+
+      if( response && !response.successful ) {
+        setAuthResponse(( prevState: any ) => {
+          return { ...prevState, 
+            successful: response.successful, 
+            errorMessage: response.errorMessage
+          }
+        });
+      }
     }
   }
 
   return (
-    <form onSubmit={(event: any) => {handleSubmit(event)}} autoComplete="off">
+    <form onSubmit={( event: any ) => { handleSubmit( event ) } } autoComplete="off">
       <div>
         {emailAddressInput}
         {passwordInput}
-        <RememberMe emailAddress={emailAddress} password={password}/>
-        <div className="text-center py-4">
-          <Button type="submit" className="btn-primary font-weight-bold w-50 my-2" onClick={(event: any) => {handleSubmit(event)}}>
+        <RememberMe emailAddress={ emailAddress } password={ password }/>
+        <div className="text-center">
+        {
+          ( !authResponse.successful ) 
+            ? <Typography variant="caption" gutterBottom className="text-danger">{authResponse.errorMessage}</Typography>
+            : null
+        }
+        </div>
+        <div className="text-center">
+          <Button type="submit" tabIndex={ 0 } className="btn-primary font-weight-bold w-50 my-2" onClick={ ( event: any ) => { handleSubmit( event ) } }>
             Sign in
           </Button>
         </div>
@@ -176,6 +196,7 @@ const Form = () => {
 }
 
 export default function Login() {
+  usePreventBackButton();
   return (
     <>
         <Grid container spacing={0}>

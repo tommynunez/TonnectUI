@@ -8,8 +8,8 @@ export default class Storage {
         this.key = key;
         this.obj = obj;
 
-        if( key ) {
-            if( !localStorage.getItem( key ) ){
+        if ( key ) {
+            if ( !localStorage.getItem( key ) ){
                 return this.decrypt( key! );
             }
             
@@ -18,7 +18,7 @@ export default class Storage {
     }
 
     encrypt( key: string, obj: any ) {
-        if( localStorage.getItem( key ) ){
+        if ( localStorage.getItem( key ) ) {
             localStorage.removeItem( key );
         }
         let stringObj = JSON.stringify( obj );
@@ -28,10 +28,10 @@ export default class Storage {
 
     decrypt( key: string ) {
         let encrypedValue = localStorage.getItem( key );
-        if( encrypedValue ) {
+        if ( encrypedValue ) {
             let data = atob( encrypedValue );
             return JSON.parse( data );
-        }else{
+        } else {
             return null;
         }
     }
@@ -42,24 +42,24 @@ export default class Storage {
 
     getDecryptPropValue( key: string, prop: string ) {
         let encrypedValue = localStorage.getItem( key );
-        if( encrypedValue ) {
+        if ( encrypedValue ) {
             let data = atob( encrypedValue );
             const obj = JSON.parse( data );
             return obj[prop];
-        }else{
+        } else {
             return null;
         }
     }
 
     encryptPropValue( key: string, prop: string, value: string ) {
         let encrypedValue = localStorage.getItem( key );
-        if( encrypedValue ) {
+        if ( encrypedValue ) {
             let data = atob( encrypedValue );
             const obj = JSON.parse( data );
             const newObj = { ...obj, [prop]: value };
             const newObjString = btoa( JSON.stringify( newObj ) );
             localStorage.setItem(key, newObjString);
-        }else{
+        } else {
             return null;
         }
     } 
