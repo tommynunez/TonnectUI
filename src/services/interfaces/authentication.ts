@@ -24,11 +24,9 @@ export interface IResetPassword{
 export interface IRegister {
     firstname?: string | null,
     lastname?: string | null,
-    username?: string | null,
     email?: string | null,
-    phonenumber?: string | null,
-    password?: string | null,
-    confirmpassword?: string | null
+    username?: string | null,
+    password?: string | null
 }
 
 export interface IForgotPassword {

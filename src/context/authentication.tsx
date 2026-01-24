@@ -31,10 +31,10 @@ export const AuthenticationProvider = (props: any) => {
         dispatch({type: 'LOGOUT'});
     };
 
-    const register = (firstname: string, lastname: string, username: string, 
-        email: string, phonenumber: string, password:string, confirmpassword: string) => 
+    const register = (firstname: string, lastname: string,
+        email: string, password:string) => 
     {
-        const register = new Register(firstname, lastname, username, email, phonenumber, password, confirmpassword);
+        const register = new Register(firstname, lastname, email, password);
         register.sendRequest();
     };
 

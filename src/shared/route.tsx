@@ -5,6 +5,7 @@ import Game from '../components/game';
 import NoPageFound from './nopagefound';
 import Autthenticaton from '../components/authentication';
 import Dashboard from '../components/dashboard';
+import Basic from '../components/randoms/basic';
 
 const unauthenticatedRoutes = {
     '/': () => <Home/>,
@@ -13,7 +14,8 @@ const unauthenticatedRoutes = {
     '/registration': () => <Autthenticaton />,
     '/resetpassword': () => <Autthenticaton />,
     '/forgotpassword': () => <Autthenticaton />,
-    '/emailconfirmation': () => <Autthenticaton />
+    '/emailconfirmation': () => <Autthenticaton />,
+    '/basic': () => <Basic />
 }
 
 export const UnauthenticatedRoutes = () => {

@@ -2,7 +2,6 @@ import React from 'react';
 
 import {
   Grid,
-  Button,
 } from '@material-ui/core';
 
 import illustration1 from '../../assets/images/illustrations/pack4/404.svg';
